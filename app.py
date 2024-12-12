@@ -9,9 +9,7 @@ model = joblib.load('misery_index_model.pkl')
 def predict_misery_index(inputs):
     # Convert input into a DataFrame to match the model's input shape
     input_data = pd.DataFrame([inputs], columns=[
-        'unemployment', 'inflation', 'temp', 'wind_speed', 'humidity', 
-        'cloud_cover', 'precip', 'ocean_heat', 'co2', 'ocean_ph', 
-        'sea_level', 'glacier_mass', 'arctic_ice', 'antarctic_ice'
+        'unemployment', 'inflation', 'climate'
     ])
     
     # Perform the prediction
@@ -32,38 +30,19 @@ st.title("Misery Index Prediction")
 
 # Explanation of the app
 st.markdown("""
-This app predicts the **Misery Index** based on various climatic factors. Please input the following values:
+This app predicts the **Misery Index** based on **Unemployment Rate**, **Inflation Rate**, and **Climatic Factors**. Please input the following values:
 """)
 
-# Create three columns for the input fields
-col1, col2, col3 = st.columns(3)
+# Input fields for the user to enter values
+unemployment = st.number_input("Unemployment Rate (%)", min_value=0.0, value=10.0)
+inflation = st.number_input("Inflation Rate (%)", min_value=0.0, value=10.0)
 
-# Input fields for the user to enter values (without max_value restrictions)
-with col1:
-    unemployment_rate = st.number_input("Unemployment Rate (%)", min_value=0.0, value=10.0)
-    inflation_rate = st.number_input("Inflation Rate (%)", min_value=0.0, value=10.0)
-    avg_temp = st.number_input("Average Temperature (°C)", min_value=-50.0, value=25.0)
-    avg_wind_speed = st.number_input("Average Wind Speed (m/s)", min_value=0.0, value=5.0)
-    cloud_cover = st.number_input("Cloud Cover (%)", min_value=0.0, value=50.0)
+# Combine climatic factors into a single input, e.g., average of climatic variables or custom input
+climate = st.number_input("Climate", min_value=-100.0, value=25.0)
 
-with col2:
-    avg_humidity = st.number_input("Average Humidity (%)", min_value=0.0, value=60.0)
-    precipitation = st.number_input("Precipitation (mm)", min_value=0.0, value=50.0)
-    ocean_heat = st.number_input("Ocean Heat Content (10²² J)", min_value=0.0, value=200.0)
-    co2 = st.number_input("Atmospheric CO₂ (ppm)", min_value=0.0, value=400.0)
-    ocean_ph = st.number_input("Ocean pH (Acidification)", min_value=7.0, value=8.1)
-
-with col3:
-    sea_level = st.number_input("Sea Level (cm)", min_value=-100.0, value=0.0)
-    glacier_mass = st.number_input("Glacier Mass Balance (Gt)", min_value=-1000.0, value=50.0)
-    arctic_ice = st.number_input("Arctic Sea Ice Extent (10⁶ km²)", min_value=0.0, value=7.0)
-    antarctic_ice = st.number_input("Antarctic Sea Ice Extent (10⁶ km²)", min_value=0.0, value=10.0)
-
-# Prepare the inputs in a list
+# Prepare the inputs in a list (only unemployment, inflation, and combined climate)
 inputs = [
-    unemployment_rate, inflation_rate, avg_temp, avg_wind_speed, cloud_cover,
-    avg_humidity, precipitation, ocean_heat, co2, ocean_ph, sea_level, 
-    glacier_mass, arctic_ice, antarctic_ice
+    unemployment, inflation, climate
 ]
 
 # Button to make prediction
@@ -77,4 +56,3 @@ if st.button('Predict Misery Index'):
     # Display the result
     st.write(f"The predicted Misery Index is: **{predicted_value:.2f}**")
     st.write(f"Category: **{category}**")
-
