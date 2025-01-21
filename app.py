@@ -4,13 +4,15 @@ import pandas as pd
 
 # Load the pre-trained model
 model = joblib.load('misery_index_model.pkl')
-print(model.feature_names_in_) 
+
+# Ensure the feature names are printed for debugging purposes
+st.write("Model expects feature names in this order:", model.feature_names_in_)
 
 # Function to make predictions
 def predict_misery_index(inputs):
-    # Convert input into a DataFrame to match the model's input shape
+    # Convert input into a DataFrame to match the model's input shape and feature order
     input_data = pd.DataFrame([inputs], columns=[
-        'unemployment', 'inflation', 'climate_index' 
+        'inflation', 'unemployment', 'climate_index'  # Match the order in feature_names_in_
     ])
     
     # Perform the prediction
@@ -41,9 +43,9 @@ inflation = st.number_input("Inflation Rate (%)", min_value=0.0, value=10.0)
 # Combine climatic factors into a single input, e.g., average of climatic variables or custom input
 climate_index = st.number_input("Climate Index", min_value=-100.0, value=25.0) 
 
-# Prepare the inputs in a list (only unemployment, inflation, and combined climate)
+# Prepare the inputs in the correct order as required by the model
 inputs = [
-    unemployment, inflation, climate_index
+    inflation, unemployment, climate_index  # Match the model's expected feature order
 ]
 
 # Button to make prediction
