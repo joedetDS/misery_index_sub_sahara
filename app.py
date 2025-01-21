@@ -4,12 +4,13 @@ import pandas as pd
 
 # Load the pre-trained model
 model = joblib.load('misery_index_model.pkl')
-print(model.feature_names_in_)
+print(model.feature_names_in_) 
+
 # Function to make predictions
 def predict_misery_index(inputs):
     # Convert input into a DataFrame to match the model's input shape
     input_data = pd.DataFrame([inputs], columns=[
-        'unemployment', 'inflation', 'climate_index'
+        'unemployment', 'inflation', 'climate_index' 
     ])
     
     # Perform the prediction
@@ -38,7 +39,7 @@ unemployment = st.number_input("Unemployment Rate (%)", min_value=0.0, value=10.
 inflation = st.number_input("Inflation Rate (%)", min_value=0.0, value=10.0)
 
 # Combine climatic factors into a single input, e.g., average of climatic variables or custom input
-climate_index = st.number_input("Climate", min_value=-100.0, value=25.0)
+climate_index = st.number_input("Climate Index", min_value=-100.0, value=25.0) 
 
 # Prepare the inputs in a list (only unemployment, inflation, and combined climate)
 inputs = [
