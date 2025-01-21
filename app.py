@@ -9,7 +9,7 @@ print(model.feature_names_in_)
 def predict_misery_index(inputs):
     # Convert input into a DataFrame to match the model's input shape
     input_data = pd.DataFrame([inputs], columns=[
-        'unemployment', 'inflation', 'climate'
+        'unemployment', 'inflation', 'climate_index'
     ])
     
     # Perform the prediction
