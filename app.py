@@ -4,7 +4,7 @@ import pandas as pd
 
 # Load the pre-trained model
 model = joblib.load('misery_index_model.pkl')
-print(model.feature_names_)
+print(model.feature_names_in_)
 # Function to make predictions
 def predict_misery_index(inputs):
     # Convert input into a DataFrame to match the model's input shape
