@@ -5,8 +5,6 @@ import pandas as pd
 # Load the pre-trained model
 model = joblib.load('misery_index_model.pkl')
 
-# Ensure the feature names are printed for debugging purposes
-st.write("Model expects feature names in this order:", model.feature_names_in_)
 
 # Function to make predictions
 def predict_misery_index(inputs):
