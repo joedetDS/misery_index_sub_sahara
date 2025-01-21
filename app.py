@@ -26,16 +26,19 @@ unemployment = st.number_input("Unemployment Rate (%)", min_value=0.0, value=10.
 inflation = st.number_input("Inflation Rate (%)", min_value=0.0, value=10.0)
 climate_index = st.number_input("Climate Index", min_value=-100.0, value=25.0)
 
-# Prepare the inputs for prediction
-inputs = ['inflation' 'unemployment' 'climate_index']
-
 # Button to make prediction
 if st.button('Predict Misery Index'):
-    # Convert input into a DataFrame to match the model's input shape
-    input_data = pd.DataFrame([inputs], columns=['inflation' 'unemployment' 'climate_index'])
+    # Convert inputs into a DataFrame to match the model's input shape
+    input_data = pd.DataFrame(
+        [[inflation, unemployment, climate_index]], 
+        columns=['inflation', 'unemployment', 'climate_index']
+    )
     
     # Predict the misery index
-    predicted_value = model.predict(input_data)[0]
-    
-    # Display the result
-    st.write(f"The predicted Misery Index for the year **{int(year)}** is: **{predicted_value:.2f}**")
+    try:
+        predicted_value = model.predict(input_data)[0]
+        
+        # Display the result
+        st.write(f"The predicted Misery Index for the year **{int(year)}** is: **{predicted_value:.2f}**")
+    except Exception as e:
+        st.error(f"Error in prediction: {e}")
