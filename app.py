@@ -11,7 +11,7 @@ st.title("Misery Index Prediction")
 
 # Explanation of the app
 st.markdown("""
-This app predicts the **Misery Index** based on **Unemployment Rate**, **Inflation Rate**, **Climatic Factors**, and a **Year**. 
+This app predicts the **Misery Index** based on **Unemployment Rate**, **Inflation Rate**, **Climate Index**, and a **Year**. 
 Enter the required values to get the prediction.
 """)
 
