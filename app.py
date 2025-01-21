@@ -27,7 +27,7 @@ inflation = st.number_input("Inflation Rate (%)", min_value=0.0, value=10.0)
 climate_index = st.number_input("Climate Index", min_value=-100.0, value=25.0)
 
 # Prepare the inputs for prediction
-inputs = [unemployment, inflation, climate_index]
+inputs = ['inflation' 'unemployment' 'climate_index']
 
 # Button to make prediction
 if st.button('Predict Misery Index'):
