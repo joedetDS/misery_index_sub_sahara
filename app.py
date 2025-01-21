@@ -38,11 +38,11 @@ unemployment = st.number_input("Unemployment Rate (%)", min_value=0.0, value=10.
 inflation = st.number_input("Inflation Rate (%)", min_value=0.0, value=10.0)
 
 # Combine climatic factors into a single input, e.g., average of climatic variables or custom input
-climate = st.number_input("Climate", min_value=-100.0, value=25.0)
+climate_index = st.number_input("Climate", min_value=-100.0, value=25.0)
 
 # Prepare the inputs in a list (only unemployment, inflation, and combined climate)
 inputs = [
-    unemployment, inflation, climate
+    unemployment, inflation, climate_index
 ]
 
 # Button to make prediction
