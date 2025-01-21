@@ -32,7 +32,7 @@ inputs = ['inflation' 'unemployment' 'climate_index']
 # Button to make prediction
 if st.button('Predict Misery Index'):
     # Convert input into a DataFrame to match the model's input shape
-    input_data = pd.DataFrame([inputs], columns=['unemployment', 'inflation', 'climate_index'])
+    input_data = pd.DataFrame([inputs], columns=['inflation' 'unemployment' 'climate_index'])
     
     # Predict the misery index
     predicted_value = model.predict(input_data)[0]
