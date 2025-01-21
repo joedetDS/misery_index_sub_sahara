@@ -5,7 +5,6 @@ import pandas as pd
 # Load the pre-trained model
 model = joblib.load('misery_index_model.pkl')
 
-
 # Function to make predictions
 def predict_misery_index(inputs):
     # Convert input into a DataFrame to match the model's input shape and feature order
@@ -16,15 +15,6 @@ def predict_misery_index(inputs):
     # Perform the prediction
     prediction = model.predict(input_data)
     return prediction[0]
-
-# Function to categorize the Misery Index
-def categorize_misery_index(misery_index):
-    if misery_index <= 10:
-        return "Low Misery Index (Stable)"
-    elif misery_index <= 20:
-        return "Moderate Misery Index (Some Distress)"
-    else:
-        return "High Misery Index (High Distress)"
 
 # Title of the app
 st.title("Misery Index Prediction")
@@ -51,9 +41,5 @@ if st.button('Predict Misery Index'):
     # Predict the misery index
     predicted_value = predict_misery_index(inputs)
     
-    # Categorize the misery index
-    category = categorize_misery_index(predicted_value)
-    
     # Display the result
     st.write(f"The predicted Misery Index is: **{predicted_value:.2f}**")
-    st.write(f"Category: **{category}**")
