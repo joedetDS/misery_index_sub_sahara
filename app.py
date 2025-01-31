@@ -1,7 +1,6 @@
 import streamlit as st
 import joblib
 import pandas as pd
-import datetime
 
 # Load the pre-trained model
 model = joblib.load('misery_index_model.pkl')
@@ -18,8 +17,9 @@ Enter the required values to get the prediction.
 # Input fields for the user to enter values
 year = st.number_input(
     "Year", 
-    min_value=datetime.datetime.now().year, 
-    value=datetime.datetime.now().year, 
+    min_value=1991, 
+    max_value=2025, 
+    value=2025, 
     step=1
 )
 unemployment = st.number_input("Unemployment Rate (%)", min_value=0.0, value=10.0)
